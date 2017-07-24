@@ -1,0 +1,2 @@
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1fd20353ae6221c4&redirect_uri=https%3A%2F%2Feasypm.cn%2Fteam&response_type=code&scope=snsapi_base&state=a#wechat_redirect
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1fd20353ae6221c4&redirect_uri=http%3A%2F%2Floeo.ngrok.cc%2Fhello&response_type=code&scope=snsapi_base&state=a#wechat_redirect
