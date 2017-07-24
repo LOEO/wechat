@@ -2,8 +2,10 @@ package com.lt.service;
 
 import org.springframework.stereotype.Service;
 
+import com.lt.entity.message.MessageEnum;
 import com.lt.entity.message.in.MessageEntity;
 import com.lt.entity.message.out.MessageResultEntity;
+import com.lt.entity.message.out.TextMessageResultEntity;
 
 /**
  * 功能：
@@ -16,13 +18,17 @@ import com.lt.entity.message.out.MessageResultEntity;
 @Service
 public class UserMsgService {
 	public MessageResultEntity process(MessageEntity messageEntity) {
-		String content = messageEntity.getContent();
-		MessageResultEntity messageResultEntity = new MessageResultEntity();
-		messageResultEntity.setToUserName(messageEntity.getFromUserName());
-		messageResultEntity.setFromUserName(messageEntity.getToUserName());
-		messageResultEntity.setCreateTime(System.currentTimeMillis()+"");
-		messageResultEntity.setContent("你发的消息是："+content);
-		messageResultEntity.setMsgType("text");
-		return messageResultEntity;
+		MessageEnum messageEnum = MessageEnum.get(messageEntity.getMsgType());
+		if (messageEnum == null) {
+			TextMessageResultEntity messageResultEntity = new TextMessageResultEntity();
+			messageResultEntity.setToUserName(messageEntity.getFromUserName());
+			messageResultEntity.setFromUserName(messageEntity.getToUserName());
+			messageResultEntity.setCreateTime(System.currentTimeMillis()+"");
+			messageResultEntity.setContent("暂不支持此格式");
+			messageResultEntity.setMsgType("text");
+			return messageResultEntity;
+		}
+		messageEnum.getOut();
+		return null;
 	}
 }

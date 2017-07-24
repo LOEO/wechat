@@ -25,16 +25,35 @@ public enum MessageEnum {
 	VOICE("voice", VoiceMessageEntity.class, VoiceMessageResultEntity.class),
 	VIDEO("video", VideoMessageEntity.class, VideoMessageResultEntity.class);
 
+	public static MessageEnum get(String type) {
+		MessageEnum[] messageEnums = MessageEnum.values();
+		for (int i = 0, len = messageEnums.length; i < len; i++) {
+			if (messageEnums[i].getName().equals(type)) {
+				return messageEnums[i];
+			}
+		}
+		return null;
+	}
+
 	public String getName() {
 		return name;
 	}
 
-	public MessageEntity getIn() throws IllegalAccessException, InstantiationException {
-		return in.newInstance();
+	public MessageEntity getIn() {
+		try {
+			return in.newInstance();
+		} catch (Exception e) {
+			throw new RuntimeException();
+		}
+
 	}
 
-	public MessageResultEntity getOut() throws IllegalAccessException, InstantiationException {
-		return out.newInstance();
+	public MessageResultEntity getOut() {
+		try {
+			return out.newInstance();
+		} catch (Exception e) {
+			throw new RuntimeException();
+		}
 	}
 
 	MessageEnum(String name, Class<? extends MessageEntity> in, Class<? extends MessageResultEntity> out) {
