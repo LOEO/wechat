@@ -1,4 +1,4 @@
-package com.lt.entity;
+package com.lt.entity.message.out;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlCData;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
@@ -33,9 +33,7 @@ public class MessageResultEntity {
 	@JacksonXmlProperty(localName = "MsgType")
 	@JacksonXmlCData
 	private String msgType;
-	@JacksonXmlProperty(localName = "Content")
-	@JacksonXmlCData
-	private String content;
+
 
 	public String getToUserName() {
 		return toUserName;
@@ -69,14 +67,6 @@ public class MessageResultEntity {
 		this.msgType = msgType;
 	}
 
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
 	@Override
 	public String toString() {
 		return "MessageResultEntity{" +
@@ -84,7 +74,6 @@ public class MessageResultEntity {
 				", fromUserName='" + fromUserName + '\'' +
 				", createTime='" + createTime + '\'' +
 				", msgType='" + msgType + '\'' +
-				", content='" + content + '\'' +
 				'}';
 	}
 }

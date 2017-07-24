@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.lt.entity.MessageEntity;
-import com.lt.entity.MessageResultEntity;
+import com.lt.entity.message.in.MessageEntity;
+import com.lt.entity.message.out.MessageResultEntity;
 import com.lt.service.CheckService;
 import com.lt.service.UserMsgService;
 

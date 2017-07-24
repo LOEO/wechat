@@ -2,8 +2,8 @@ package com.lt.service;
 
 import org.springframework.stereotype.Service;
 
-import com.lt.entity.MessageEntity;
-import com.lt.entity.MessageResultEntity;
+import com.lt.entity.message.in.MessageEntity;
+import com.lt.entity.message.out.MessageResultEntity;
 
 /**
  * 功能：

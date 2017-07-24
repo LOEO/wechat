@@ -1,4 +1,4 @@
-package com.lt.entity;
+package com.lt.entity.message.in;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
@@ -19,8 +19,6 @@ public class MessageEntity {
 	private String createTime;
 	@JacksonXmlProperty(localName = "MsgType")
 	private String msgType;
-	@JacksonXmlProperty(localName = "Content")
-	private String content;
 	@JacksonXmlProperty(localName = "MsgId")
 	private String msgId;
 
@@ -56,13 +54,6 @@ public class MessageEntity {
 		this.msgType = msgType;
 	}
 
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
 
 	public String getMsgId() {
 		return msgId;
@@ -79,7 +70,6 @@ public class MessageEntity {
 				", fromUserName='" + fromUserName + '\'' +
 				", createTime='" + createTime + '\'' +
 				", msgType='" + msgType + '\'' +
-				", content='" + content + '\'' +
 				", msgId='" + msgId + '\'' +
 				'}';
 	}
