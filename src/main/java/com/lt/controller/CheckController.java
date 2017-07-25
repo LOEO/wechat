@@ -46,7 +46,6 @@ public class CheckController {
 	public MessageResultEntity checkMsg(@RequestBody MessageEntity msgEntity) throws JsonProcessingException {
 		System.out.println(msgEntity);
 		MessageResultEntity messageResultEntity = userMsgService.process(msgEntity);
-		System.out.println(messageResultEntity);
 		XmlMapper xmlMapper = new XmlMapper();
 		System.out.println(xmlMapper.writeValueAsString(messageResultEntity));
 		return messageResultEntity;

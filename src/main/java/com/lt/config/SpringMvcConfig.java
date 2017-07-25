@@ -1,6 +1,11 @@
 package com.lt.config;
 
+import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+
+import com.lt.component.message.convert.CustomMessageConvert;
 
 /**
  * 功能：
@@ -12,13 +17,10 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class SpringMvcConfig {
-	//@Bean
-	/*public HttpMessageConverters messageConverters() {
-		HttpMessageConverter<?> byteArrayHttpMessageConverter = new ByteArrayHttpMessageConverter();
-		HttpMessageConverter<?> httpMessageConverter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
-		HttpMessageConverter<?> mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
-		HttpMessageConverter<?> mappingJackson2XmlHttpMessageConverter = new MappingJackson2XmlHttpMessageConverter();
-		return new HttpMessageConverters(byteArrayHttpMessageConverter,httpMessageConverter,
-				mappingJackson2HttpMessageConverter,mappingJackson2XmlHttpMessageConverter);
-	}*/
+	@Bean
+	public HttpMessageConverters messageConverters() {
+		HttpMessageConverter<?> customMessageConvert = new CustomMessageConvert();
+		return new HttpMessageConverters(customMessageConvert);
+	}
+
 }

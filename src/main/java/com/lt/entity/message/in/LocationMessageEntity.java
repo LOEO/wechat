@@ -1,5 +1,7 @@
 package com.lt.entity.message.in;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 /**
@@ -10,16 +12,16 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
  * @version：2017 Version：1.0
  * @company：创海科技 Created with IntelliJ IDEA
  * <xml>
-<ToUserName><![CDATA[toUser]]></ToUserName>
-<FromUserName><![CDATA[fromUser]]></FromUserName>
-<CreateTime>1351776360</CreateTime>
-<MsgType><![CDATA[location]]></MsgType>
-<Location_X>23.134521</Location_X>
-<Location_Y>113.358803</Location_Y>
-<Scale>20</Scale>
-<Label><![CDATA[位置信息]]></Label>
-<MsgId>1234567890123456</MsgId>
-</xml>
+ * <ToUserName><![CDATA[toUser]]></ToUserName>
+ * <FromUserName><![CDATA[fromUser]]></FromUserName>
+ * <CreateTime>1351776360</CreateTime>
+ * <MsgType><![CDATA[location]]></MsgType>
+ * <Location_X>23.134521</Location_X>
+ * <Location_Y>113.358803</Location_Y>
+ * <Scale>20</Scale>
+ * <Label><![CDATA[位置信息]]></Label>
+ * <MsgId>1234567890123456</MsgId>
+ * </xml>
  */
 public class LocationMessageEntity extends MessageEntity {
 	@JacksonXmlProperty(localName = "Location_X")
@@ -30,6 +32,16 @@ public class LocationMessageEntity extends MessageEntity {
 	private String scale;
 	@JacksonXmlProperty(localName = "Label")
 	private String label;
+
+	@Override
+	public LocationMessageEntity init(Map<String, String> attr) {
+		super.init(attr);
+		this.locationX = attr.get("Location_X");
+		this.locationY = attr.get("Location_Y");
+		this.scale = attr.get("Scale");
+		this.label = attr.get("Label");
+		return this;
+	}
 
 	public String getLocationX() {
 		return locationX;

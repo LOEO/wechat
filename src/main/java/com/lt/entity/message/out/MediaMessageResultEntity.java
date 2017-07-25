@@ -16,6 +16,9 @@ public class MediaMessageResultEntity {
 	@JacksonXmlCData
 	private String mediaId;
 
+	public MediaMessageResultEntity() {
+	}
+
 	public String getMediaId() {
 		return mediaId;
 	}

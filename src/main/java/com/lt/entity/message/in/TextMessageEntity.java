@@ -1,7 +1,8 @@
 package com.lt.entity.message.in;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.lt.entity.message.in.MessageEntity;
 
 /**
  * 功能：
@@ -21,6 +22,13 @@ public class TextMessageEntity extends MessageEntity {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	@Override
+	public TextMessageEntity init(Map<String, String> attr) {
+		super.init(attr);
+		this.content = attr.get("Content");
+		return this;
 	}
 
 	@Override

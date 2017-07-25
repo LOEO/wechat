@@ -2,6 +2,7 @@ package com.lt.entity.message.out;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlCData;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.lt.entity.message.in.MessageEntity;
 
 /**
  * 功能：
@@ -11,22 +12,29 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
  * @version：2017 Version：1.0
  * @company：创海科技 Created with IntelliJ IDEA
  * <xml>
-<ToUserName><![CDATA[toUser]]></ToUserName>
-<FromUserName><![CDATA[fromUser]]></FromUserName>
-<CreateTime>12345678</CreateTime>
-<MsgType><![CDATA[music]]></MsgType>
-<Music>
-<Title><![CDATA[TITLE]]></Title>
-<Description><![CDATA[DESCRIPTION]]></Description>
-<MusicUrl><![CDATA[MUSIC_Url]]></MusicUrl>
-<HQMusicUrl><![CDATA[HQ_MUSIC_Url]]></HQMusicUrl>
-<ThumbMediaId><![CDATA[media_id]]></ThumbMediaId>
-</Music>
-</xml>
+ * <ToUserName><![CDATA[toUser]]></ToUserName>
+ * <FromUserName><![CDATA[fromUser]]></FromUserName>
+ * <CreateTime>12345678</CreateTime>
+ * <MsgType><![CDATA[music]]></MsgType>
+ * <Music>
+ * <Title><![CDATA[TITLE]]></Title>
+ * <Description><![CDATA[DESCRIPTION]]></Description>
+ * <MusicUrl><![CDATA[MUSIC_Url]]></MusicUrl>
+ * <HQMusicUrl><![CDATA[HQ_MUSIC_Url]]></HQMusicUrl>
+ * <ThumbMediaId><![CDATA[media_id]]></ThumbMediaId>
+ * </Music>
+ * </xml>
  */
 public class MusicMessageResultEntity extends MessageResultEntity {
 	@JacksonXmlProperty(localName = "Music")
 	private Music music;
+
+	public MusicMessageResultEntity() {
+	}
+
+	public MusicMessageResultEntity(MessageEntity messageEntity) {
+		super(messageEntity);
+	}
 
 	public Music getMusic() {
 		return music;
@@ -43,7 +51,7 @@ public class MusicMessageResultEntity extends MessageResultEntity {
 				"} " + super.toString();
 	}
 
-	public static class Music{
+	public static class Music {
 		@JacksonXmlProperty(localName = "Title")
 		@JacksonXmlCData
 		private String title;

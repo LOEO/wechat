@@ -2,6 +2,7 @@ package com.lt.entity.message.out;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlCData;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.lt.entity.message.in.MessageEntity;
 
 /**
  * 功能：
@@ -15,6 +16,13 @@ public class TextMessageResultEntity extends MessageResultEntity {
 	@JacksonXmlProperty(localName = "Content")
 	@JacksonXmlCData
 	private String content;
+
+	public TextMessageResultEntity() {
+	}
+
+	public TextMessageResultEntity(MessageEntity messageEntity) {
+		super(messageEntity);
+	}
 
 	public String getContent() {
 		return content;

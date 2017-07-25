@@ -17,6 +17,7 @@ import com.lt.entity.message.out.TextMessageResultEntity;
  */
 @Service
 public class UserMsgService {
+	public static final String MSG = "1.注册\n2.登录\n3.个人信息\n4.天气查询\n5.公交查询\n发送对应的序号选择功能";
 	public MessageResultEntity process(MessageEntity messageEntity) {
 		MessageEnum messageEnum = MessageEnum.get(messageEntity.getMsgType());
 		if (messageEnum == null) {
@@ -24,11 +25,10 @@ public class UserMsgService {
 			messageResultEntity.setToUserName(messageEntity.getFromUserName());
 			messageResultEntity.setFromUserName(messageEntity.getToUserName());
 			messageResultEntity.setCreateTime(System.currentTimeMillis()+"");
-			messageResultEntity.setContent("暂不支持此格式");
+			messageResultEntity.setContent(MSG);
 			messageResultEntity.setMsgType("text");
 			return messageResultEntity;
 		}
-		messageEnum.getOut();
-		return null;
+		return messageEnum.getMessageProcessor().process(messageEntity);
 	}
 }

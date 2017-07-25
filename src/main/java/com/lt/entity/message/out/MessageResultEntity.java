@@ -3,6 +3,7 @@ package com.lt.entity.message.out;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlCData;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.lt.entity.message.in.MessageEntity;
 
 /**
  * 功能：
@@ -34,6 +35,16 @@ public class MessageResultEntity {
 	@JacksonXmlCData
 	private String msgType;
 
+	public MessageResultEntity() {
+
+	}
+
+	public MessageResultEntity(MessageEntity messageEntity) {
+		this.toUserName = messageEntity.getFromUserName();
+		this.fromUserName = messageEntity.getToUserName();
+		this.msgType = messageEntity.getMsgType();
+		this.createTime = String.valueOf(System.currentTimeMillis());
+	}
 
 	public String getToUserName() {
 		return toUserName;
