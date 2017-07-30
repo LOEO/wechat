@@ -5,11 +5,13 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import com.lt.entity.api.AccessToken;
 
 /**
  * 功能：
@@ -23,6 +25,9 @@ import org.springframework.web.client.RestTemplate;
 public class WeChatApi {
 	@Resource
 	private RestTemplate restTemplate;
+	@Value("${weChat.api.access_token}")
+	private String API_ACCESS_TOKEN;
+	public static AccessToken accessToken;
 
 	public String login() {
 		HttpHeaders headers = new HttpHeaders();
@@ -31,10 +36,23 @@ public class WeChatApi {
 		Map<String, Object> data = new HashMap<>();
 		data.put("loginName", "lt@hydt.com");
 		data.put("password", "9aa0498a2359caaebce2c7297bbb0fd9");
-		HttpEntity httpEntity = new HttpEntity(data,headers);
+		HttpEntity httpEntity = new HttpEntity(data, headers);
 		ResponseEntity<Object> result = restTemplate.postForEntity("http://localhost:8080/api/users/login", httpEntity, Object.class);
 		System.out.println(result);
 		return result.toString();
+	}
+
+	public AccessToken getAccessToken() {
+		if (accessToken == null || (System.currentTimeMillis()-accessToken.getCreateTime()) > accessToken.getExpires()) {
+			try{
+				accessToken = restTemplate.getForObject(API_ACCESS_TOKEN, AccessToken.class);
+				accessToken.setCreateTime(System.currentTimeMillis());
+			}catch (Exception e){
+				System.out.println("获取access_token错误");
+				throw new RuntimeException();
+			}
+		}
+		return accessToken;
 	}
 
 }

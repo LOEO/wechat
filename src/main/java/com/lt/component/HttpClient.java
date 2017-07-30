@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.annotation.Resource;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,14 +24,22 @@ public class HttpClient {
 	@Resource
 	private RestTemplate restTemplate;
 
-	public <T> T get(String url,Class<T> resultClass) {
+	public <T> T get(String url,Class<T> resultType) {
 		String result = restTemplate.getForObject(url, String.class);
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
-			return objectMapper.readValue(result, resultClass);
+			return objectMapper.readValue(result, resultType);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public <T> T post(String url,Object data,Class<T> resultType) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "application/json");
+		headers.add("X-Requested-With", "XMLHttpRequest");
+		HttpEntity httpEntity = new HttpEntity(data,headers);
+		return restTemplate.postForObject(url, httpEntity, resultType);
 	}
 }
