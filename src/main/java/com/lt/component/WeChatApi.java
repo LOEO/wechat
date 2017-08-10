@@ -25,8 +25,10 @@ import com.lt.entity.api.AccessToken;
 public class WeChatApi {
 	@Resource
 	private RestTemplate restTemplate;
+
 	@Value("${weChat.api.access_token}")
 	private String API_ACCESS_TOKEN;
+
 	public static AccessToken accessToken;
 
 	public String login() {
@@ -41,18 +43,4 @@ public class WeChatApi {
 		System.out.println(result);
 		return result.toString();
 	}
-
-	public AccessToken getAccessToken() {
-		if (accessToken == null || (System.currentTimeMillis()-accessToken.getCreateTime()) > accessToken.getExpires()) {
-			try{
-				accessToken = restTemplate.getForObject(API_ACCESS_TOKEN, AccessToken.class);
-				accessToken.setCreateTime(System.currentTimeMillis());
-			}catch (Exception e){
-				System.out.println("获取access_token错误");
-				throw new RuntimeException();
-			}
-		}
-		return accessToken;
-	}
-
 }

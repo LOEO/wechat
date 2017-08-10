@@ -32,6 +32,7 @@ public class CustomMessageConvert extends MappingJackson2XmlHttpMessageConverter
 		if (type.getTypeName().equals(MessageEntity.class.getTypeName())) {
 			ParameterizedTypeImpl parameterizedType = ParameterizedTypeImpl.make(Map.class, new Type[]{String.class, String.class}, null);
 			Map<String,String> params = (Map<String, String>) super.read(parameterizedType, contextClass, inputMessage);
+			System.out.println(params);
 			MessageEnum messageEnum = MessageEnum.get(params.get("MsgType"));
 			if (messageEnum != null) {
 				return messageEnum.getIn().init(params);

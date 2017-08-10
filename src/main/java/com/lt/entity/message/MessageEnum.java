@@ -1,10 +1,12 @@
 package com.lt.entity.message;
 
+import com.lt.component.message.processor.EventMessageProcessor;
 import com.lt.component.message.processor.ImageMessageProcessor;
 import com.lt.component.message.processor.MessageProcessor;
 import com.lt.component.message.processor.TextMessageProcessor;
 import com.lt.component.message.processor.VideoMessageProcessor;
 import com.lt.component.message.processor.VoiceMessageProcessor;
+import com.lt.entity.message.in.EventMessageEntity;
 import com.lt.entity.message.in.ImageMessageEntity;
 import com.lt.entity.message.in.MessageEntity;
 import com.lt.entity.message.in.TextMessageEntity;
@@ -23,7 +25,8 @@ public enum MessageEnum {
 	TEXT("text", TextMessageEntity.class, new TextMessageProcessor()),
 	IMAGE("image", ImageMessageEntity.class, new ImageMessageProcessor()),
 	VOICE("voice", VoiceMessageEntity.class, new VoiceMessageProcessor()),
-	VIDEO("video", VideoMessageEntity.class, new VideoMessageProcessor());
+	VIDEO("video", VideoMessageEntity.class, new VideoMessageProcessor()),
+	EVENT("event", EventMessageEntity.class, new EventMessageProcessor());
 
 	public static MessageEnum get(String type) {
 		MessageEnum[] messageEnums = MessageEnum.values();
@@ -60,5 +63,5 @@ public enum MessageEnum {
 
 	private String name;
 	private Class<? extends MessageEntity> in;
-	private MessageProcessor messageProcessor;
+	private MessageProcessor<? extends MessageEntity> messageProcessor;
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lt.component.WeChatApi;
+import com.lt.component.WeChatTokenContext;
 import com.lt.entity.api.AccessToken;
 import com.lt.service.ConditionMenuService;
 import com.lt.service.TagService;
@@ -26,12 +27,14 @@ public class ApiController {
 	@Resource
 	private WeChatApi weChatApi;
 	@Resource
+	private WeChatTokenContext weChatTokenContext;
+	@Resource
 	private ConditionMenuService conditionMenuService;
 	@Resource
 	private TagService tagService;
 	@GetMapping("accesstoken")
 	public AccessToken getAccessToken() {
-		return weChatApi.getAccessToken();
+		return weChatTokenContext.getAccessToken();
 	}
 
 	@GetMapping("button")
