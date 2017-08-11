@@ -32,4 +32,10 @@ public class WebPageAuthorizationController {
 		modelMap.put("userInfo", userInfo);
 		return "index";
 	}
+
+	@GetMapping("home")
+	public String home(ModelMap modelMap) {
+		modelMap.put("msg", "欢迎你！！！！");
+		return "home";
+	}
 }

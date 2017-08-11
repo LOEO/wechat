@@ -1,21 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>index</title>
+	<title>index</title>
 
 </head>
 <body>
 <h3>用户信息</h3>
 <img th:src="@{${userInfo.headimgurl}}">
 <table>
-    <tr><td>昵称：</td><td th:text="${userInfo.nickname}"></td></tr>
-    <tr><td>性别：</td><td th:text="${userInfo.sex}"></td></tr>
-    <tr><td>国家：</td><td th:text="${userInfo.country}"></td></tr>
-    <tr><td>省份：</td><td th:text="${userInfo.province}"></td></tr>
-    <tr><td>城市：</td><td th:text="${userInfo.city}"></td></tr>
-    <tr><td>openid：</td>
-    <td th:text="${userInfo.openid}"></td></tr>
-    <tr><td>unionid：</td><td th:text="${userInfo.unionid}"></td></tr>
+	<tr>
+		<td>昵称：</td>
+		<td th:text="${userInfo.nickname}"></td>
+	</tr>
+	<tr>
+		<td>性别：</td>
+		<td th:text="${userInfo.sex}"></td>
+	</tr>
+	<tr>
+		<td>国家：</td>
+		<td th:text="${userInfo.country}"></td>
+	</tr>
+	<tr>
+		<td>省份：</td>
+		<td th:text="${userInfo.province}"></td>
+	</tr>
+	<tr>
+		<td>城市：</td>
+		<td th:text="${userInfo.city}"></td>
+	</tr>
+	<tr>
+		<td>openid：</td>
+		<td th:text="${userInfo.openid}"></td>
+	</tr>
+	<tr>
+		<td>unionid：</td>
+		<td th:text="${userInfo.unionid}"></td>
+	</tr>
+	<tr>
+		<td>姓名：</td>
+		<td><input th:type="text" th:placeholder="姓名"/></td>
+	</tr>
+	<tr>
+		<td>科室：</td>
+		<td>
+			<select>
+				<option th:value="0" th:text="骨科"></option>
+				<option th:value="1" th:text="内科"></option>
+				<option th:value="2" th:text="外科"></option>
+			</select>
+		</td>
+	</tr>
+	<tr><td colspan="2" style="text-align: center"><button id="register" onclick="register()">注册</button></td></tr>
 </table>
+<script type="text/javascript">
+	function register() {
+		window.location = "./home";
+	}
+</script>
 </body>
 </html>

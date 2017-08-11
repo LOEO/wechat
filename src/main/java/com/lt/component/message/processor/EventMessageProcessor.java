@@ -20,6 +20,8 @@ public class EventMessageProcessor implements MessageProcessor<EventMessageEntit
 			textMessageResultEntity.setMsgType("text");
 			textMessageResultEntity.setContent("你还没有注册！\n<a href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1fd20353ae6221c4&redirect_uri=http%3A%2F%2Floeo.ngrok.cc%2Fagree&response_type=code&scope=snsapi_userinfo&state=a#wechat_redirect'>点击注册</a>");
 			return textMessageResultEntity;
+		} else if (in.getEventKey().equals("unsubscribe")) {
+			System.out.println(in.getFromUserName()+"取消关注");
 		}
 		return null;
 	}
